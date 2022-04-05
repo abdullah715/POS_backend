@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "returns",
+  "info": {
+    "singularName": "return",
+    "pluralName": "returns",
+    "displayName": "return",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subTotal": {
+      "type": "decimal"
+    },
+    "taxTotal": {
+      "type": "decimal"
+    },
+    "method": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "decimal"
+    },
+    "return_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::return-item.return-item",
+      "mappedBy": "return"
+    },
+    "bill": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bill.bill"
+    }
+  }
+}

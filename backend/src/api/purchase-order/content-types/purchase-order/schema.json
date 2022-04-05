@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchase_orders",
+  "info": {
+    "singularName": "purchase-order",
+    "pluralName": "purchase-orders",
+    "displayName": "purchaseOrder",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "invoiceNo": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "purchase_orders"
+    },
+    "items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::item.item",
+      "mappedBy": "purchase_order"
+    },
+    "expense": {
+      "type": "decimal"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "subTotal": {
+      "type": "decimal"
+    },
+    "tax": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100
+    },
+    "discount": {
+      "type": "decimal"
+    },
+    "payable": {
+      "type": "decimal"
+    },
+    "supplier_transaction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::supplier-transaction.supplier-transaction"
+    }
+  }
+}

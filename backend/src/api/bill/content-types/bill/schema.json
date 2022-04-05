@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bills",
+  "info": {
+    "singularName": "bill",
+    "pluralName": "bills",
+    "displayName": "bill",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subTotal": {
+      "type": "decimal"
+    },
+    "taxTotal": {
+      "type": "decimal"
+    },
+    "method": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "decimal"
+    },
+    "bill_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bill-item.bill-item",
+      "mappedBy": "bill"
+    },
+    "costTotal": {
+      "type": "decimal"
+    }
+  }
+}

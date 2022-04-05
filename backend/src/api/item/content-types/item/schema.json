@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "purchaseQty": {
+      "type": "integer"
+    },
+    "barcode": {
+      "type": "string",
+      "unique": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "items"
+    },
+    "purchase_order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::purchase-order.purchase-order",
+      "inversedBy": "items"
+    },
+    "costPrice": {
+      "type": "decimal"
+    },
+    "expense": {
+      "type": "decimal"
+    },
+    "margin": {
+      "type": "biginteger",
+      "min": "0",
+      "max": "100"
+    },
+    "rate": {
+      "type": "decimal"
+    },
+    "stock": {
+      "type": "decimal"
+    },
+    "tax": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100
+    },
+    "taxedCostPrice": {
+      "type": "decimal"
+    },
+    "deduction": {
+      "type": "decimal"
+    },
+    "searchName": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    }
+  }
+}

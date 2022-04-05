@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "return_items",
+  "info": {
+    "singularName": "return-item",
+    "pluralName": "return-items",
+    "displayName": "returnItem",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::item.item"
+    },
+    "qty": {
+      "type": "decimal"
+    },
+    "rate": {
+      "type": "decimal"
+    },
+    "bill": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::return.return",
+      "inversedBy": "return_items"
+    },
+    "tax": {
+      "type": "decimal"
+    },
+    "return": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::return.return",
+      "inversedBy": "return_items"
+    }
+  }
+}

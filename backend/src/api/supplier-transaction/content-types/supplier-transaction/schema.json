@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supplier_transactions",
+  "info": {
+    "singularName": "supplier-transaction",
+    "pluralName": "supplier-transactions",
+    "displayName": "supplierTransaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "supplier_transactions"
+    },
+    "credit": {
+      "type": "decimal"
+    },
+    "debit": {
+      "type": "biginteger"
+    },
+    "remark": {
+      "type": "text"
+    }
+  }
+}
