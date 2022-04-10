@@ -25,10 +25,7 @@ const createWindow = () => {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 
-  mainWindow.loadFile(path.join(app.getAppPath(), "loader.html"));
-  setTimeout(() => {
-    mainWindow.loadURL("http://localhost:1337/frontend/build/index.html");
-  }, 3000);
+  mainWindow.loadFile(path.join(app.getAppPath(), "frontend", "index.html"));
 };
 
 // This method will be called when Electron has finished
