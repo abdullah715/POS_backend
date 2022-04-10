@@ -26,8 +26,5 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  async bootstrap({ strapi }) {
-    let knex = await strapi.db.connection.context.raw(view);
-    console.log(knex);
-  },
+  async bootstrap() {},
 };

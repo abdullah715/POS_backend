@@ -27,7 +27,7 @@ async function modifyData({ data }) {
     });
 
     console.log("productData", res2);
-    let y = dt.getYear();
+    let y = dt.getFullYear().toString().substring(2, 4);
     let m = (+dt.getMonth() + 1).toString().padStart(2, 0);
 
     if (!data.barcode) {

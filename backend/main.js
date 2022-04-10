@@ -1,9 +1,10 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, dialog } = require("electron");
 const path = require("path");
-const strapi = require("@strapi/strapi");
+
+const pm2 = require("@tpp/pm2");
 
 const createWindow = () => {
   // Create the browser window.
@@ -14,26 +15,24 @@ const createWindow = () => {
   });
 
   mainWindow.maximize();
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "frontend", "build", "index.html"));
+
+  console.log("dev", app.getAppPath());
+  pm2.start({
+    script: "server.js",
+    cwd: app.getAppPath(),
+  });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
+
+  mainWindow.loadFile(path.join(__dirname, "frontend", "build", "index.html"));
 };
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
-  strapi({
-    dir: __dirname + "/",
-    environment: "production",
-  })
-    .start()
-    .then((_) => {
-      createWindow();
-    });
-
+  createWindow();
   app.on("activate", () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

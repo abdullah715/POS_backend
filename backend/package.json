@@ -6,19 +6,39 @@
   "main": "main.js",
   "scripts": {
     "develop": "strapi develop",
-    "start": "strapi start",
+    "start": "electron-forge start",
     "electron": "electron .",
-    "build": "strapi build",
-    "strapi": "strapi"
+    "build-strapi": "strapi build",
+    "strapi": "strapi",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "build": "electron-builder build --win zip",
+    "build:pack": "electron-builder --dir",
+    "build:dist": "electron-builder",
+    "build:postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.natancabral.react-js-electron-sqlite3",
+    "asar": false,
+    "publish": null
   },
   "devDependencies": {
-    "electron": "^18.0.1"
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "electron": "^18.0.1",
+    "electron-builder": "^22.14.13"
   },
   "dependencies": {
-    "@strapi/strapi": "4.1.5",
-    "@strapi/plugin-users-permissions": "4.1.5",
     "@strapi/plugin-i18n": "4.1.5",
-    "sqlite3": "5.0.2"
+    "@strapi/plugin-users-permissions": "4.1.5",
+    "@strapi/strapi": "4.1.5",
+    "@tpp/pm2": "^2.1.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "mysql": "^2.18.1",
+    "sqlite3": "^5.0.2"
   },
   "author": {
     "name": "A Strapi developer"
@@ -30,5 +50,32 @@
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "backend"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
 }

@@ -33,7 +33,12 @@ module.exports = createCoreController("api::item.item", ({ strapi }) => ({
               `);
 
       summary.OutOfStock = await strapi.db.connection.context.raw(
-        `select distinct(name) from items where stock <= 0 or stock is null`
+        `select * from (
+          select name,SUM(stock) stock,ipl.product_id from items_product_links ipl 
+          left join items i on
+          ipl.item_id = i.id
+          GROUP  by product_id 
+          ) where stock = 0`
       );
     }
 
